@@ -123,7 +123,7 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
               setFormData({ name: '', description: '', color: '#6366f1', isPublic: false });
               setShowForm(true);
             }}
-          className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
+          className="bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
         >
           + New Set
         </button>
