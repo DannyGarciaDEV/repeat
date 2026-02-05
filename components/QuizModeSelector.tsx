@@ -67,7 +67,7 @@ export default function QuizModeSelector({ sets, allCards, onStartQuiz }: QuizMo
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6">
+      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
           Configure Quiz Mode
         </h2>
@@ -159,10 +159,10 @@ export default function QuizModeSelector({ sets, allCards, onStartQuiz }: QuizMo
                     key={set._id}
                     className={`flex items-center p-3 rounded-lg cursor-pointer transition-colors ${
                       isSelected
-                        ? 'bg-indigo-100 dark:bg-indigo-900/30 border-2 border-indigo-500'
+                        ? 'bg-rose-100 dark:bg-rose-900/30 border-2 border-rose-500'
                         : 'bg-white dark:bg-gray-700 border-2 border-transparent hover:bg-gray-50 dark:hover:bg-gray-600'
                     }`}
-                    style={isSelected ? { borderColor: set.color || '#6366f1' } : {}}
+                    style={isSelected ? { borderColor: set.color || '#f43f5e' } : {}}
                   >
                     <input
                       type="checkbox"
@@ -172,7 +172,7 @@ export default function QuizModeSelector({ sets, allCards, onStartQuiz }: QuizMo
                     />
                     <div
                       className="w-4 h-4 rounded mr-3"
-                      style={{ backgroundColor: set.color || '#6366f1' }}
+                      style={{ backgroundColor: set.color || '#f43f5e' }}
                     />
                     <div className="flex-1">
                       <div className="font-medium text-gray-900 dark:text-white">
@@ -201,7 +201,7 @@ export default function QuizModeSelector({ sets, allCards, onStartQuiz }: QuizMo
         {/* Start Quiz Button */}
         <button
           onClick={handleStartQuiz}
-          className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold py-4 rounded-lg transition-all shadow-lg hover:shadow-xl text-lg"
+          className="w-full bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white font-semibold py-4 rounded-lg transition-all shadow-lg hover:shadow-xl text-lg"
         >
           Start Quiz
         </button>

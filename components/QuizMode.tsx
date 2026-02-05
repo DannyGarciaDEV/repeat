@@ -72,13 +72,13 @@ export default function QuizMode({ cards, onReviewComplete }: QuizModeProps) {
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
           <div
-            className="bg-indigo-600 h-2 rounded-full transition-all duration-300"
+            className="bg-rose-500 h-2 rounded-full transition-all duration-300"
             style={{ width: `${((currentIndex + 1) / cards.length) * 100}%` }}
           />
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6 min-h-[400px] flex flex-col justify-center">
+      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6 min-h-[400px] flex flex-col justify-center">
         <div className="mb-6">
           <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">Question</div>
           <div className="text-2xl font-semibold text-gray-900 dark:text-white">
@@ -127,7 +127,7 @@ export default function QuizMode({ cards, onReviewComplete }: QuizModeProps) {
         {!showAnswer && (
           <button
             onClick={() => setShowAnswer(true)}
-            className="mt-6 w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="mt-6 w-full bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
             Show Answer
           </button>
