@@ -112,9 +112,9 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
   ];
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+    <div className="min-w-0">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white min-w-0">
           Flashcard Sets
         </h2>
           <button
@@ -123,7 +123,7 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
               setFormData({ name: '', description: '', color: '#6366f1', isPublic: false });
               setShowForm(true);
             }}
-          className="bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
+          className="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl min-h-[44px] touch-manipulation shrink-0"
         >
           + New Set
         </button>
@@ -136,11 +136,11 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 min-w-0">
           {sets.map((set) => (
             <div
               key={set._id}
-              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all"
+              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-4 sm:p-6 border-2 border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all min-w-0 break-words"
               style={{ borderColor: set.color || '#6366f1' }}
             >
               <div className="flex items-start justify-between mb-4">
@@ -205,9 +205,9 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
       )}
 
       {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full p-6">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4 overflow-y-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-md w-full max-h-[90dvh] overflow-y-auto p-4 sm:p-6 my-auto">
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
               {editingSet ? 'Edit Set' : 'Create New Set'}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -270,20 +270,20 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
                   </div>
                 </label>
               </div>
-              <div className="flex gap-3 justify-end pt-4">
+              <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end pt-4">
                 <button
                   type="button"
                   onClick={() => {
                     setShowForm(false);
                     setEditingSet(null);
                   }}
-                  className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="w-full sm:w-auto px-4 py-3 sm:py-2 min-h-[44px] touch-manipulation border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium"
+                  className="w-full sm:w-auto px-4 py-3 sm:py-2 min-h-[44px] touch-manipulation bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white rounded-lg font-medium"
                 >
                   {editingSet ? 'Update' : 'Create'}
                 </button>

@@ -18,6 +18,12 @@ export const metadata: Metadata = {
   description: "Master anything with spaced repetition flashcards",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

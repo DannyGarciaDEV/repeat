@@ -38,10 +38,10 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-100 via-rose-100 to-pink-100 dark:from-gray-900 dark:via-rose-950/30 dark:to-gray-900 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-red-500 mb-2">
+    <div className="min-h-screen bg-gradient-to-br from-red-100 via-rose-100 to-pink-100 dark:from-gray-900 dark:via-rose-950/30 dark:to-gray-900 flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-md p-5 sm:p-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-red-500 mb-2">
             Repeat
           </h1>
           <p className="text-gray-600 dark:text-gray-400">Welcome back!</p>

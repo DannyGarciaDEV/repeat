@@ -65,9 +65,9 @@ export default function QuizMode({ cards, onReviewComplete }: QuizModeProps) {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="mb-6 text-center">
-        <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+    <div className="max-w-3xl mx-auto min-w-0">
+      <div className="mb-4 sm:mb-6 text-center">
+        <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-2">
           Card {currentIndex + 1} of {cards.length}
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
@@ -78,45 +78,45 @@ export default function QuizMode({ cards, onReviewComplete }: QuizModeProps) {
         </div>
       </div>
 
-      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6 min-h-[400px] flex flex-col justify-center">
-        <div className="mb-6">
-          <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">Question</div>
-          <div className="text-2xl font-semibold text-gray-900 dark:text-white">
+      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-4 sm:p-8 mb-4 sm:mb-6 min-h-[320px] sm:min-h-[400px] flex flex-col justify-center min-w-0">
+        <div className="mb-4 sm:mb-6 min-w-0">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">Question</div>
+          <div className="text-lg sm:text-2xl font-semibold text-gray-900 dark:text-white break-words">
             {currentCard?.front}
           </div>
         </div>
 
         {showAnswer && (
-          <div className="mt-6 pt-6 border-t border-gray-300 dark:border-gray-600">
-            <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">Answer</div>
-            <div className="text-xl text-gray-700 dark:text-gray-300 mb-4">
+          <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-300 dark:border-gray-600 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-2">Answer</div>
+            <div className="text-base sm:text-xl text-gray-700 dark:text-gray-300 mb-4 break-words">
               {currentCard?.back}
             </div>
-            <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+            <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-4">
               How well did you know this?
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
               <button
                 onClick={() => handleReview(0)}
-                className="px-4 py-3 bg-red-100 hover:bg-red-200 dark:bg-red-900 dark:hover:bg-red-800 text-red-700 dark:text-red-300 rounded-lg font-medium transition-colors"
+                className="px-3 py-3 sm:px-4 min-h-[48px] touch-manipulation bg-red-100 hover:bg-red-200 dark:bg-red-900 dark:hover:bg-red-800 text-red-700 dark:text-red-300 rounded-lg text-sm sm:text-base font-medium transition-colors"
               >
                 Again (0)
               </button>
               <button
                 onClick={() => handleReview(1)}
-                className="px-4 py-3 bg-orange-100 hover:bg-orange-200 dark:bg-orange-900 dark:hover:bg-orange-800 text-orange-700 dark:text-orange-300 rounded-lg font-medium transition-colors"
+                className="px-3 py-3 sm:px-4 min-h-[48px] touch-manipulation bg-orange-100 hover:bg-orange-200 dark:bg-orange-900 dark:hover:bg-orange-800 text-orange-700 dark:text-orange-300 rounded-lg text-sm sm:text-base font-medium transition-colors"
               >
                 Hard (1)
               </button>
               <button
                 onClick={() => handleReview(2)}
-                className="px-4 py-3 bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:hover:bg-yellow-800 text-yellow-700 dark:text-yellow-300 rounded-lg font-medium transition-colors"
+                className="px-3 py-3 sm:px-4 min-h-[48px] touch-manipulation bg-yellow-100 hover:bg-yellow-200 dark:bg-yellow-900 dark:hover:bg-yellow-800 text-yellow-700 dark:text-yellow-300 rounded-lg text-sm sm:text-base font-medium transition-colors"
               >
                 Good (2)
               </button>
               <button
                 onClick={() => handleReview(3)}
-                className="px-4 py-3 bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 text-green-700 dark:text-green-300 rounded-lg font-medium transition-colors"
+                className="px-3 py-3 sm:px-4 min-h-[48px] touch-manipulation bg-green-100 hover:bg-green-200 dark:bg-green-900 dark:hover:bg-green-800 text-green-700 dark:text-green-300 rounded-lg text-sm sm:text-base font-medium transition-colors"
               >
                 Easy (3)
               </button>
@@ -127,7 +127,7 @@ export default function QuizMode({ cards, onReviewComplete }: QuizModeProps) {
         {!showAnswer && (
           <button
             onClick={() => setShowAnswer(true)}
-            className="mt-6 w-full bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+            className="mt-4 sm:mt-6 w-full min-h-[48px] touch-manipulation bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-colors"
           >
             Show Answer
           </button>

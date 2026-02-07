@@ -131,25 +131,26 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-rose-50 to-pink-50 dark:from-gray-900 dark:via-rose-950/20 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
         {/* Header */}
-        <header className="mb-8 flex items-center justify-between">
-          <div>
-            <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-red-500 mb-2">
+        <header className="mb-6 sm:mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-red-500 mb-1 sm:mb-2 truncate">
               Repeat
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Master anything with spaced repetition
             </p>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="text-right">
-              <div className="text-sm text-gray-600 dark:text-gray-400">Welcome back,</div>
-              <div className="font-semibold text-gray-900 dark:text-white">{user!.name}</div>
+          <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+            <div className="text-right min-w-0 hidden sm:block">
+              <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 truncate">Welcome back,</div>
+              <div className="font-semibold text-gray-900 dark:text-white truncate max-w-[120px] sm:max-w-none">{user!.name}</div>
             </div>
             <Link
               href="/profile"
-              className="w-12 h-12 rounded-full bg-gradient-to-r from-rose-500 to-red-500 flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-r from-rose-500 to-red-500 flex items-center justify-center text-white font-bold text-lg shadow-lg hover:shadow-xl transition-shadow shrink-0"
+              aria-label="Profile"
             >
               {user!.name.charAt(0).toUpperCase()}
             </Link>
@@ -157,28 +158,28 @@ export default function Home() {
         </header>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-rose-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Cards</div>
-            <div className="text-3xl font-bold text-rose-600 dark:text-rose-400">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-rose-500 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Total Cards</div>
+            <div className="text-2xl sm:text-3xl font-bold text-rose-600 dark:text-rose-400 truncate">
               {totalCards}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Due Today</div>
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-orange-500 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Due Today</div>
+            <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400 truncate">
               {dueCards.length}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Mastered</div>
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-green-500 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Mastered</div>
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 truncate">
               {cards.filter(c => c.repetitions >= 5).length}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-red-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Sets</div>
-            <div className="text-3xl font-bold text-red-600 dark:text-red-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-red-500 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Sets</div>
+            <div className="text-2xl sm:text-3xl font-bold text-red-600 dark:text-red-400 truncate">
               {sets.length}
             </div>
           </div>
@@ -186,12 +187,12 @@ export default function Home() {
 
         {/* Set Filter */}
         {sets.length > 0 && (
-          <div className="mb-6 bg-white dark:bg-gray-800 rounded-xl shadow-md p-4">
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Filter by Set:</span>
+          <div className="mb-4 sm:mb-6 bg-white dark:bg-gray-800 rounded-xl shadow-md p-3 sm:p-4">
+            <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+              <span className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 w-full sm:w-auto">Filter by Set:</span>
               <button
                 onClick={() => setSelectedSetId(null)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-medium transition-colors min-h-[44px] touch-manipulation ${
                   selectedSetId === null
                     ? 'bg-rose-600 text-white'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -203,12 +204,13 @@ export default function Home() {
                 <button
                   key={set._id}
                   onClick={() => setSelectedSetId(set._id || null)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-3 py-2 sm:px-4 rounded-lg text-xs sm:text-sm font-medium transition-colors min-h-[44px] touch-manipulation truncate max-w-[180px] sm:max-w-none ${
                     selectedSetId === set._id
                       ? 'bg-rose-600 text-white'
                       : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                   style={selectedSetId === set._id ? { backgroundColor: set.color || '#e11d48' } : {}}
+                  title={set.name}
                 >
                   {set.name} ({set.cardCount || 0})
                 </button>
@@ -218,12 +220,12 @@ export default function Home() {
         )}
 
         {/* Tabs */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md mb-6">
-          <div className="border-b border-gray-200 dark:border-gray-700">
-            <nav className="flex -mb-px">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md mb-4 sm:mb-6 overflow-hidden">
+          <div className="border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+            <nav className="flex -mb-px min-w-max sm:min-w-0 sm:flex-wrap">
               <button
                 onClick={() => setActiveTab('cards')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 min-h-[44px] touch-manipulation ${
                   activeTab === 'cards'
                     ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
@@ -233,21 +235,21 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab('quiz')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 min-h-[44px] touch-manipulation ${
                   activeTab === 'quiz'
                     ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
               >
-                Quiz Mode {dueCards.length > 0 && (
-                  <span className="ml-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
+                Quiz {dueCards.length > 0 && (
+                  <span className="ml-1 sm:ml-2 bg-orange-500 text-white text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
                     {dueCards.length}
                   </span>
                 )}
               </button>
               <button
                 onClick={() => setActiveTab('sets')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 min-h-[44px] touch-manipulation ${
                   activeTab === 'sets'
                     ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
@@ -257,7 +259,7 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab('calendar')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 min-h-[44px] touch-manipulation ${
                   activeTab === 'calendar'
                     ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
@@ -267,24 +269,24 @@ export default function Home() {
               </button>
               <button
                 onClick={() => setActiveTab('public')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-3 py-3 sm:px-6 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 min-h-[44px] touch-manipulation ${
                   activeTab === 'public'
                     ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
               >
-                Public Sets
+                Public
               </button>
             </nav>
           </div>
         </div>
 
         {/* Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 sm:p-6 min-w-0">
           {activeTab === 'cards' && (
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+            <div className="min-w-0">
+              <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white truncate min-w-0">
                   {selectedSetId ? sets.find(s => s._id === selectedSetId)?.name : 'My Flashcard Collection'}
                 </h2>
                 <button
@@ -292,7 +294,7 @@ export default function Home() {
                     setEditingCard(null);
                     setShowForm(true);
                   }}
-                  className="bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl"
+                  className="w-full sm:w-auto bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl min-h-[44px] touch-manipulation shrink-0"
                 >
                   + New Card
                 </button>
@@ -352,8 +354,8 @@ export default function Home() {
 
         {/* Card Form Modal */}
         {(showForm || editingCard) && user && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4 overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90dvh] overflow-y-auto my-auto min-h-0">
               <CardForm
                 card={editingCard}
                 userId={user.id}
@@ -369,8 +371,8 @@ export default function Home() {
         )}
 
         {/* Footer */}
-        <footer className="mt-12 pt-6 border-t border-rose-200 dark:border-rose-900/50 text-center">
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+        <footer className="mt-8 sm:mt-12 pt-4 sm:pt-6 border-t border-rose-200 dark:border-rose-900/50 text-center px-2">
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
             © {new Date().getFullYear()} Repeat. By{' '}
             <a
               href="https://github.com/dannygarciadev"

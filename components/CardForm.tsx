@@ -64,8 +64,8 @@ export default function CardForm({ card, userId, sets = [], defaultSetId, onSucc
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+    <div className="p-4 sm:p-6">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
         {card ? 'Edit Card' : 'Create New Card'}
       </h2>
       <form onSubmit={handleSubmit}>
@@ -126,18 +126,18 @@ export default function CardForm({ card, userId, sets = [], defaultSetId, onSucc
             </select>
           </div>
         )}
-        <div className="flex gap-3 justify-end">
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+            className="w-full sm:w-auto px-4 py-3 sm:py-2 min-h-[44px] touch-manipulation border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full sm:w-auto px-4 py-3 sm:py-2 min-h-[44px] touch-manipulation bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? 'Saving...' : card ? 'Update' : 'Create'}
           </button>

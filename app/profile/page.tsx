@@ -84,17 +84,17 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-rose-50 to-pink-50 dark:from-gray-900 dark:via-rose-950/20 dark:to-gray-900">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 max-w-4xl">
         <Link
           href="/"
-          className="inline-flex items-center text-rose-600 dark:text-rose-400 hover:underline mb-6"
+          className="inline-flex items-center text-rose-600 dark:text-rose-400 hover:underline mb-4 sm:mb-6 min-h-[44px] touch-manipulation"
         >
           ← Back to Dashboard
         </Link>
 
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Profile Settings</h1>
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-4 sm:p-8">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">Profile Settings</h1>
             <p className="text-sm text-gray-500 dark:text-gray-400">User ID: {user.id}</p>
           </div>
 
@@ -128,18 +128,18 @@ export default function ProfilePage() {
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 type="submit"
                 disabled={loading}
-                className="px-6 py-3 bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white font-semibold rounded-lg transition-all disabled:opacity-50 shadow-lg hover:shadow-xl"
+                className="w-full sm:w-auto min-h-[44px] touch-manipulation px-6 py-3 bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white font-semibold rounded-lg transition-all disabled:opacity-50 shadow-lg hover:shadow-xl"
               >
                 {loading ? 'Saving...' : 'Save Changes'}
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors"
+                className="w-full sm:w-auto min-h-[44px] touch-manipulation px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors"
               >
                 Logout
               </button>

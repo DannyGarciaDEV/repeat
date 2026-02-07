@@ -66,9 +66,9 @@ export default function QuizModeSelector({ sets, allCards, onStartQuiz }: QuizMo
   const selectedDueCards = getCardsDueToday(selectedSetCards);
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-8 mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+    <div className="max-w-3xl mx-auto min-w-0">
+      <div className="bg-gradient-to-br from-rose-50 to-red-50 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-lg p-4 sm:p-8 mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
           Configure Quiz Mode
         </h2>
 

@@ -99,82 +99,82 @@ export default function SetDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-rose-50 to-pink-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-7xl">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link
             href="/"
-            className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:underline mb-4"
+            className="inline-flex items-center text-rose-600 dark:text-rose-400 hover:underline mb-4 min-h-[44px] touch-manipulation"
           >
             ← Back to Dashboard
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 min-w-0">
             <div
-              className="w-16 h-16 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg"
-              style={{ backgroundColor: set.color || '#6366f1' }}
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl flex items-center justify-center text-white font-bold text-xl sm:text-2xl shadow-lg shrink-0"
+              style={{ backgroundColor: set.color || '#f43f5e' }}
             >
               {set.name.charAt(0).toUpperCase()}
             </div>
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            <div className="min-w-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2 truncate">
                 {set.name}
               </h1>
               {set.description && (
-                <p className="text-gray-600 dark:text-gray-400">{set.description}</p>
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 break-words">{set.description}</p>
               )}
             </div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4" style={{ borderColor: set.color || '#6366f1' }}>
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Total Cards</div>
-            <div className="text-3xl font-bold" style={{ color: set.color || '#6366f1' }}>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 min-w-0" style={{ borderColor: set.color || '#f43f5e' }}>
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Total Cards</div>
+            <div className="text-2xl sm:text-3xl font-bold truncate" style={{ color: set.color || '#f43f5e' }}>
               {cards.length}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-orange-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Due Today</div>
-            <div className="text-3xl font-bold text-orange-600 dark:text-orange-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-orange-500 min-w-0">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Due Today</div>
+            <div className="text-2xl sm:text-3xl font-bold text-orange-600 dark:text-orange-400 truncate">
               {dueCards.length}
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-l-4 border-green-500">
-            <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Mastered</div>
-            <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 sm:p-6 border-l-4 border-green-500 min-w-0 col-span-2 md:col-span-1">
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">Mastered</div>
+            <div className="text-2xl sm:text-3xl font-bold text-green-600 dark:text-green-400 truncate">
               {cards.filter(c => c.repetitions >= 5).length}
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md mb-6">
-          <div className="border-b border-gray-200 dark:border-gray-700">
-            <nav className="flex -mb-px">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md mb-4 sm:mb-6 overflow-hidden">
+          <div className="border-b border-gray-200 dark:border-gray-700 overflow-x-auto">
+            <nav className="flex -mb-px min-w-max">
               <button
                 onClick={() => setActiveTab('cards')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap min-h-[44px] touch-manipulation ${
                   activeTab === 'cards'
-                    ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                    ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
-                style={activeTab === 'cards' ? { borderColor: set.color || '#6366f1', color: set.color || '#6366f1' } : {}}
+                style={activeTab === 'cards' ? { borderColor: set.color || '#f43f5e', color: set.color || '#f43f5e' } : {}}
               >
                 Cards ({cards.length})
               </button>
               <button
                 onClick={() => setActiveTab('quiz')}
-                className={`px-6 py-4 text-sm font-medium border-b-2 transition-colors ${
+                className={`px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap min-h-[44px] touch-manipulation ${
                   activeTab === 'quiz'
-                    ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400'
+                    ? 'border-rose-500 text-rose-600 dark:text-rose-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
                 }`}
-                style={activeTab === 'quiz' ? { borderColor: set.color || '#6366f1', color: set.color || '#6366f1' } : {}}
+                style={activeTab === 'quiz' ? { borderColor: set.color || '#f43f5e', color: set.color || '#f43f5e' } : {}}
               >
-                Quiz Mode {dueCards.length > 0 && (
-                  <span className="ml-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full">
+                Quiz {dueCards.length > 0 && (
+                  <span className="ml-1 sm:ml-2 bg-orange-500 text-white text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full">
                     {dueCards.length}
                   </span>
                 )}
@@ -184,11 +184,11 @@ export default function SetDetailPage() {
         </div>
 
         {/* Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 sm:p-6 min-w-0">
           {activeTab === 'cards' && (
-            <div>
-              <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+            <div className="min-w-0">
+              <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6">
+                <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white min-w-0 truncate">
                   Flashcards in {set.name}
                 </h2>
                 <button
@@ -196,8 +196,8 @@ export default function SetDetailPage() {
                     setEditingCard(null);
                     setShowForm(true);
                   }}
-                  className="px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl text-white"
-                  style={{ backgroundColor: set.color || '#6366f1' }}
+                  className="w-full sm:w-auto min-h-[44px] touch-manipulation px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl text-white shrink-0"
+                  style={{ backgroundColor: set.color || '#f43f5e' }}
                 >
                   + Add Card to Set
                 </button>
@@ -222,8 +222,8 @@ export default function SetDetailPage() {
 
         {/* Card Form Modal */}
         {(showForm || editingCard) && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4 overflow-y-auto">
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl max-w-2xl w-full max-h-[90dvh] overflow-y-auto my-auto min-h-0">
               <CardForm
                 card={editingCard}
                 userId={user!.id}

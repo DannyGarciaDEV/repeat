@@ -85,38 +85,38 @@ export default function CalendarView({ cards }: CalendarViewProps) {
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+    <div className="max-w-4xl mx-auto min-w-0">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-6">
         <button
           onClick={() => navigateMonth('prev')}
-          className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+          className="px-3 py-2 sm:px-4 min-h-[44px] touch-manipulation bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors text-sm sm:text-base"
         >
-          ← Previous
+          ← Prev
         </button>
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+        <h2 className="text-lg sm:text-2xl font-semibold text-gray-900 dark:text-white order-first w-full sm:order-none sm:w-auto text-center sm:text-left">
           {format(currentDate, 'MMMM yyyy')}
         </h2>
         <button
           onClick={() => navigateMonth('next')}
-          className="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors"
+          className="px-3 py-2 sm:px-4 min-h-[44px] touch-manipulation bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors text-sm sm:text-base"
         >
           Next →
         </button>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-        <div className="grid grid-cols-7 gap-2 mb-2">
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 sm:p-6 min-w-0 overflow-x-auto">
+        <div className="grid grid-cols-7 gap-1 sm:gap-2 mb-2 min-w-[280px]">
           {weekDays.map((day) => (
             <div
               key={day}
-              className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 py-2"
+              className="text-center text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 py-1 sm:py-2"
             >
               {day}
             </div>
           ))}
         </div>
 
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-7 gap-1 sm:gap-2 min-w-[280px]">
           {/* Empty cells for days before month starts */}
           {Array.from({ length: startDay }).map((_, i) => (
             <div key={`empty-${i}`} className="aspect-square" />
@@ -134,7 +134,7 @@ export default function CalendarView({ cards }: CalendarViewProps) {
                 key={day}
                 className={`aspect-square rounded-lg border-2 flex flex-col items-center justify-center transition-all ${
                   today
-                    ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30'
+                    ? 'border-rose-500 bg-rose-50 dark:bg-rose-900/30'
                     : 'border-gray-200 dark:border-gray-700'
                 } ${
                   dayData.count > 0
@@ -143,16 +143,16 @@ export default function CalendarView({ cards }: CalendarViewProps) {
                 }`}
               >
                 <div
-                  className={`text-sm font-medium ${
+                  className={`text-xs sm:text-sm font-medium ${
                     today
-                      ? 'text-indigo-600 dark:text-indigo-400'
+                      ? 'text-rose-600 dark:text-rose-400'
                       : 'text-gray-700 dark:text-gray-300'
                   }`}
                 >
                   {day}
                 </div>
                 {dayData.count > 0 && (
-                  <div className="text-xs font-bold text-green-600 dark:text-green-400 mt-1">
+                  <div className="text-[10px] sm:text-xs font-bold text-green-600 dark:text-green-400 mt-0.5 sm:mt-1">
                     {dayData.count}
                   </div>
                 )}
@@ -161,17 +161,17 @@ export default function CalendarView({ cards }: CalendarViewProps) {
           })}
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-6 text-sm">
+        <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded border-2 border-gray-200 dark:border-gray-700"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-gray-200 dark:border-gray-700 shrink-0"></div>
             <span className="text-gray-600 dark:text-gray-400">No cards</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded bg-green-100 dark:bg-green-900/30 border-2 border-green-400 dark:border-green-600"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded bg-green-100 dark:bg-green-900/30 border-2 border-green-400 dark:border-green-600 shrink-0"></div>
             <span className="text-gray-600 dark:text-gray-400">Cards created</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded border-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30"></div>
+            <div className="w-3 h-3 sm:w-4 sm:h-4 rounded border-2 border-rose-500 bg-rose-50 dark:bg-rose-900/30 shrink-0"></div>
             <span className="text-gray-600 dark:text-gray-400">Today</span>
           </div>
         </div>

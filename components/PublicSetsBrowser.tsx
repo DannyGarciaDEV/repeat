@@ -115,13 +115,13 @@ export default function PublicSetsBrowser({ onSetImported }: PublicSetsBrowserPr
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+    <div className="min-w-0">
+      <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white min-w-0">
           Browse Public Sets
         </h2>
-        <div className="flex gap-3">
-          <label className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium cursor-pointer transition-colors">
+        <div className="flex gap-3 shrink-0">
+          <label className="inline-flex items-center justify-center px-4 py-2 min-h-[44px] touch-manipulation bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium cursor-pointer transition-colors">
             Upload Set
             <input
               type="file"
@@ -133,13 +133,13 @@ export default function PublicSetsBrowser({ onSetImported }: PublicSetsBrowserPr
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-4 sm:mb-6">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search public sets..."
-          className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+          className="w-full min-w-0 px-4 py-3 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-rose-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
         />
       </div>
 
@@ -155,12 +155,12 @@ export default function PublicSetsBrowser({ onSetImported }: PublicSetsBrowserPr
           </p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 min-w-0">
           {publicSets.map((set) => (
             <div
               key={set._id}
-              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all"
-              style={{ borderColor: set.color || '#6366f1' }}
+              className="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 rounded-xl p-4 sm:p-6 border-2 border-gray-200 dark:border-gray-600 hover:shadow-lg transition-all min-w-0 break-words"
+              style={{ borderColor: set.color || '#f43f5e' }}
             >
               <div className="flex items-start justify-between mb-4">
                 <div
@@ -191,13 +191,13 @@ export default function PublicSetsBrowser({ onSetImported }: PublicSetsBrowserPr
                 <button
                   onClick={() => set._id && handleImport(set._id)}
                   disabled={importing === set._id}
-                  className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
+                  className="flex-1 min-h-[44px] touch-manipulation bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 text-white px-3 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
                 >
                   {importing === set._id ? 'Importing...' : 'Import'}
                 </button>
                 <button
                   onClick={() => set._id && handleExport(set._id, set.name)}
-                  className="flex-1 bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors"
+                  className="flex-1 min-h-[44px] touch-manipulation bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm font-medium transition-colors"
                 >
                   Download
                 </button>
