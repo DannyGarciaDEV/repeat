@@ -11,7 +11,7 @@ const CARDS_COLLECTION = 'cards';
 function normalizeSets(setData: unknown): { name: string; description?: string; color?: string; cards: { front: string; back: string }[] }[] {
   if (Array.isArray(setData)) {
     return setData.filter(
-      (s): s is { name: string; cards: unknown[] } =>
+      (s): s is { name: string; cards: unknown[]; description?: unknown; color?: unknown } =>
         s && typeof s === 'object' && typeof s.name === 'string' && Array.isArray(s.cards)
     ).map((s) => ({
       name: s.name,
