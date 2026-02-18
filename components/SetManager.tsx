@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Set } from '@/types/set';
 
@@ -16,6 +16,8 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
   const [showForm, setShowForm] = useState(false);
   const [editingSet, setEditingSet] = useState<Set | null>(null);
   const [formData, setFormData] = useState({ name: '', description: '', color: '#6366f1', isPublic: false });
+  const [importing, setImporting] = useState(false);
+  const importFileRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,6 +85,37 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
     setShowForm(true);
   };
 
+  const handleImportSet = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    const userId = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!).id : null;
+    if (!userId || !file) return;
+    setImporting(true);
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      try {
+        const setData = JSON.parse((ev.target?.result as string) || '');
+        const res = await fetch('/api/sets/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId, setData }),
+        });
+        if (res.ok) {
+          onSetCreated();
+          alert('Set imported successfully!');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || 'Failed to import set');
+        }
+      } catch {
+        alert('Invalid JSON file. Use format: { "name": "...", "cards": [{ "front": "...", "back": "..." }] }');
+      } finally {
+        setImporting(false);
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const handleExport = async (setId: string, setName: string) => {
     try {
       const response = await fetch(`/api/sets/${setId}/export`);
@@ -117,6 +150,18 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
         <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white min-w-0">
           Flashcard Sets
         </h2>
+        <div className="flex flex-wrap gap-2">
+          <label className="w-full sm:w-auto min-h-[44px] touch-manipulation px-4 py-3 border-2 border-green-600 dark:border-green-500 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 rounded-lg font-medium transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center">
+            {importing ? 'Importing...' : 'Import set'}
+            <input
+              ref={importFileRef}
+              type="file"
+              accept=".json,application/json"
+              onChange={handleImportSet}
+              disabled={importing}
+              className="hidden"
+            />
+          </label>
           <button
             onClick={() => {
               setEditingSet(null);
@@ -127,6 +172,7 @@ export default function SetManager({ sets, onSetCreated, onSetDeleted, onSetUpda
         >
           + New Set
         </button>
+        </div>
       </div>
 
       {sets.length === 0 && !showForm ? (

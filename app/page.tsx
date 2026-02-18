@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '@/contexts/AuthContext';
@@ -28,6 +28,35 @@ export default function Home() {
   const [editingCard, setEditingCard] = useState<Flashcard | null>(null);
   const [showSetForm, setShowSetForm] = useState(false);
   const [quizCards, setQuizCards] = useState<Flashcard[] | null>(null);
+  const importFileRef = useRef<HTMLInputElement>(null);
+
+  const handleImportSet = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!user || !file) return;
+    e.target.value = '';
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      try {
+        const setData = JSON.parse((ev.target?.result as string) || '');
+        const res = await fetch('/api/sets/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: user.id, setData }),
+        });
+        if (res.ok) {
+          await fetchSets();
+          await fetchCards();
+          alert('Set imported successfully!');
+        } else {
+          const err = await res.json().catch(() => ({}));
+          alert(err.error || 'Failed to import set');
+        }
+      } catch {
+        alert('Invalid JSON file. Use the export format: { "name": "...", "cards": [{ "front": "...", "back": "..." }] }');
+      }
+    };
+    reader.readAsText(file);
+  };
 
   const fetchCards = async () => {
     if (!user) return;
@@ -289,15 +318,51 @@ export default function Home() {
                 <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white truncate min-w-0">
                   {selectedSetId ? sets.find(s => s._id === selectedSetId)?.name : 'My Flashcard Collection'}
                 </h2>
-                <button
-                  onClick={() => {
-                    setEditingCard(null);
-                    setShowForm(true);
-                  }}
-                  className="w-full sm:w-auto bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl min-h-[44px] touch-manipulation shrink-0"
-                >
-                  + New Card
-                </button>
+                <div className="flex flex-wrap gap-2">
+                  <label className="w-full sm:w-auto min-h-[44px] touch-manipulation px-4 py-3 border-2 border-green-600 dark:border-green-500 text-green-700 dark:text-green-300 hover:bg-green-50 dark:hover:bg-green-950/30 rounded-lg font-medium transition-colors shrink-0 cursor-pointer inline-flex items-center justify-center">
+                    Import set
+                    <input
+                      ref={importFileRef}
+                      type="file"
+                      accept=".json,application/json"
+                      onChange={handleImportSet}
+                      className="hidden"
+                    />
+                  </label>
+                  <button
+                    onClick={async () => {
+                      if (!user) return;
+                      const url = selectedSetId
+                        ? `/api/export?userId=${encodeURIComponent(user.id)}&setId=${encodeURIComponent(selectedSetId)}`
+                        : `/api/export?userId=${encodeURIComponent(user.id)}`;
+                      const res = await fetch(url);
+                      if (!res.ok) {
+                        const err = await res.json().catch(() => ({}));
+                        alert(err.error || 'Export failed');
+                        return;
+                      }
+                      const blob = await res.blob();
+                      const name = res.headers.get('Content-Disposition')?.match(/filename="?([^"]+)"?/)?.[1] || 'repeat_export.json';
+                      const a = document.createElement('a');
+                      a.href = URL.createObjectURL(blob);
+                      a.download = name;
+                      a.click();
+                      URL.revokeObjectURL(a.href);
+                    }}
+                    className="w-full sm:w-auto min-h-[44px] touch-manipulation px-4 py-3 border-2 border-rose-300 dark:border-rose-700 text-rose-700 dark:text-rose-300 hover:bg-rose-50 dark:hover:bg-rose-950/30 rounded-lg font-medium transition-colors shrink-0"
+                  >
+                    Export as JSON
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingCard(null);
+                      setShowForm(true);
+                    }}
+                    className="w-full sm:w-auto bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-700 hover:to-red-600 text-white px-6 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl min-h-[44px] touch-manipulation shrink-0"
+                  >
+                    + New Card
+                  </button>
+                </div>
               </div>
               <CardList
                 cards={filteredCards}
